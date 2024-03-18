@@ -2,6 +2,7 @@
 title: "Customer Tracker Report"
 format: 
   html:
+    toc: true
     other-links:
     - text: Download Report
       href: "Customer-Tracker-Report.xlsx"
