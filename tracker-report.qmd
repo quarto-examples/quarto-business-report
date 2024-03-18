@@ -1,0 +1,179 @@
+---
+title: "Customer Tracker Report"
+format: 
+  html:
+    other-links:
+      - text: Download Report
+        href: Customer-Tracker-Report.xlsx
+knitr:
+  opts_chunk: 
+    echo: false
+    message: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(tidyverse)
+library(plotly)
+library(openxlsx)
+library(gt)
+
+# could also be some parameters to the report
+params <- list(
+  seg = "Total",
+  grp = "Total",
+  per = "Week"
+)
+```
+
+
+
+This report shows performance year over year by: `r params$seg` (segment); `r params$grp` (group); and `r params$per` (period).
+
+::: {.callout-note}
+
+## Last Update
+
+This report was generated on `r stamp("Sunday, May 1, 2000 22:10", locale = "C")(now())`. 
+
+Downloadable report has been updated.
+:::
+
+```{r}
+#| label: pulldata
+# In real use case, this could be retrieved from databases query for the new date for example
+curr <- read_csv("data/trackerCalcCurr.csv")
+pre <- read_csv("data/trackerCalcPre.csv")
+users <- read_csv("data/users.csv")
+```
+
+## Evolution of performance
+
+This report shows performance by: `r params$seg` (segment); `r params$grp` (group); and `r params$per` (period).
+
+```{r}
+#| label: format
+percent_change <- function(x, y) { (y / x - 1) }
+
+dat <- bind_cols(
+  curr |>
+    filter(segment == params$seg) |>
+    select(ends_with(paste0(params$grp, params$per))) |>
+    rename_at(1:3, ~c("purchasesCurr", "itemsCurr", "dollarsCurr")),
+  pre |>
+    filter(segment == params$seg) |>
+    select(ends_with(paste0(params$grp, params$per))) |>
+    rename_at(1:3, ~c("purchasesPre", "itemsPre", "dollarsPre"))
+) |>
+  mutate(
+    Week = 1:52,
+    RevenuePre = dollarsPre,
+    RevenueCurr = dollarsCurr,
+    Revenue = percent_change(dollarsPre, dollarsCurr),
+    CustomersPre = filter(users, segment == params$seg) |> pull(pre),
+    CustomersCurr = filter(users, segment == params$seg) |> pull(curr),
+    Customers = percent_change(CustomersPre, CustomersCurr),
+    VisitsPre = purchasesPre / CustomersPre,
+    VisitsCurr = purchasesCurr / CustomersCurr,
+    Visits = percent_change(VisitsPre, VisitsCurr),
+    ItemsPre = itemsPre / purchasesPre,
+    ItemsCurr = itemsCurr / purchasesCurr,
+    Items = percent_change(ItemsPre, ItemsCurr),
+    SpendPre = dollarsPre / itemsPre,
+    SpendCurr = dollarsCurr / itemsCurr,
+    Spend = percent_change(SpendPre, SpendCurr)
+  ) |>
+  filter(Week <= 22) |> # simulate incomplete data
+  select(
+    Week, RevenuePre, RevenueCurr, Revenue,
+    CustomersPre, CustomersCurr, Customers,
+    VisitsPre, VisitsCurr, Visits,
+    ItemsPre, ItemsCurr, Items,
+    SpendPre, SpendCurr, Spend
+  )
+```
+
+```{r}
+#| label: plot
+#| fig-height: 5
+#| fig-width: 10
+pdat <- dat |>
+  select(Week, Revenue, Customers, Visits, Items, Spend) |>
+  gather(seg, metric, -Week) |>
+  mutate(seg = factor(seg, levels = c("Spend", "Items", "Visits", "Customers", "Revenue")))
+
+p1 <- ggplot(filter(pdat, seg != "Revenue"), aes(Week, metric, fill = seg)) +
+  geom_bar(stat = "Identity") + 
+  geom_line(data = filter(pdat, seg == "Revenue"), aes(Week, metric, col = "Revenue")) +
+  scale_fill_manual(values = alpha(c("orange", "salmon", "darkgrey", "lightgreen", "lightblue"), 0.5), breaks = setdiff(levels(pdat$seg), "Revenue")) +
+  scale_color_manual(values = "darkblue", breaks = "Revenue") +
+  labs(x = "Week", y = "Percent", title = "Percentage change by Week") +
+  theme_minimal() +
+  theme(legend.title=element_blank(), ) +
+  scale_y_continuous(labels = scales::label_percent())
+
+ggplotly(p1)
+```
+
+## Details
+
+```{r}
+#| label: data
+t0 <- dat |>
+  select(Week, RevenuePre, RevenueCurr, Revenue, Customers, Visits, Items, Spend)
+
+tab <- 
+  gt(t0) |> 
+  tab_header(
+    title = "Summary",
+    subtitle = "Performance by Week"
+  ) |> 
+  fmt_percent(
+    columns = Revenue:Spend,
+    decimals = 2
+  ) |> 
+  fmt_currency(
+    columns = c(RevenuePre, RevenueCurr),
+    currency = "USD",
+    decimals = 0
+  ) |> 
+  data_color(
+    columns = Revenue,
+    rows = Revenue < 0,
+    method = "numeric",
+    palette = "Reds"
+  ) |> 
+  data_color(
+    columns = Revenue,
+    rows = Revenue > 0,
+    method = "numeric",
+    palette = "Greens"
+  ) |> 
+  data_color(
+    columns = Customers:Spend,
+    fn = \(v) lapply(v, \(x) if (x < 0) "darkred" else if (x > 0) "darkgreen" else "grey"),
+    apply_to = "text"
+  )
+
+tab
+```
+
+```{r}
+#| label: download
+#| include: false
+reportLab <- "Customer-Tracker-Report"
+pngfile <- paste0(reportLab, ".png")
+xlsfile <- paste0(reportLab, ".xlsx")
+wb <- createWorkbook()
+addWorksheet(wb, "Summary", gridLines = FALSE)
+ggsave(pngfile, p1, "png", width = 6, height = 3)
+insertImage(wb, "Summary", file = pngfile)
+writeData(wb, "Summary", t0, startRow = 16)
+addWorksheet(wb, sheetName = "Data")
+writeDataTable(wb, sheet = 2, dat)
+saveWorkbook(wb, xlsfile, overwrite = TRUE)
+```
+
+
+
