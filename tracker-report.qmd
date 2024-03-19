@@ -1,10 +1,9 @@
 ---
 title: "Customer Tracker Report"
 format: html
-knitr:
-  opts_chunk: 
-    echo: false
-    message: false
+execute:
+  echo: false
+  warning: false
 ---
 
 ```{r}
