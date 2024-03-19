@@ -1,5 +1,4 @@
 project:
   title: "workflow-demo-03-2024"
-
-
-
+  render:
+    - "*.qmd"
