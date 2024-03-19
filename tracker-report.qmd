@@ -23,10 +23,6 @@ params <- list(
 )
 ```
 
-
-
-This report shows performance year over year by: `r params$seg` (segment); `r params$grp` (group); and `r params$per` (period).
-
 ::: {.callout-note}
 
 ## Last Update
