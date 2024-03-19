@@ -14,7 +14,11 @@ library(tidyverse)
 library(plotly)
 library(openxlsx)
 library(gt)
+```
 
+```{r}
+#| label: params
+#| include: false
 # could also be some parameters to the report
 params <- list(
   seg = "Total",
