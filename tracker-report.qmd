@@ -114,6 +114,7 @@ dat <- bind_cols(
 #| label: plot
 #| fig-height: 5
 #| fig-width: 10
+#| column: page
 pdat <- dat |>
   select(Week, Revenue, Customers, Visits, Items, Spend) |>
   gather(seg, metric, -Week) |>
