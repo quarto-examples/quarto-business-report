@@ -37,8 +37,6 @@ run_time <- now()
 ## Last Update
 
 This report was generated on `r format_datetime(run_time)`. 
-
-Downloadable report has been updated.
 :::
 
 ```{r}
