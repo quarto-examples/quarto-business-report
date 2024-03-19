@@ -1,10 +1,6 @@
 ---
 title: "Customer Tracker Report"
-format: 
-  html:
-    other-links:
-      - text: Download Report
-        href: Customer-Tracker-Report.xlsx
+format: html
 knitr:
   opts_chunk: 
     echo: false
