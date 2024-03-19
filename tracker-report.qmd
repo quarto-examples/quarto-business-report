@@ -52,11 +52,19 @@ dat <- bind_cols(
   curr |>
     filter(segment == params$seg) |>
     select(ends_with(paste0(params$grp, params$per))) |>
-    rename_at(1:3, ~c("purchasesCurr", "itemsCurr", "dollarsCurr")),
+    rename(
+      purchasesCurr = starts_with("purchases"),
+      itemsCurr = starts_with("items"),
+      dollarsCurr = starts_with("dollars"),
+    ),
   pre |>
     filter(segment == params$seg) |>
     select(ends_with(paste0(params$grp, params$per))) |>
-    rename_at(1:3, ~c("purchasesPre", "itemsPre", "dollarsPre"))
+    rename(
+      purchasesPre = starts_with("purchases"),
+      itemsPre = starts_with("items"),
+      dollarsPre = starts_with("dollars"),
+    )
 ) |>
   mutate(
     Week = 1:52,
