@@ -8,3 +8,11 @@
 /*-main/*
 *.xlsx
 *.zip
+
+*_files/
+*_cache/
+.output_metadata.json
+*-report.html
+*-report.pdf
+email-preview/
+*.png
