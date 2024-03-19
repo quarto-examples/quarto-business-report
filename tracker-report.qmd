@@ -1,7 +1,7 @@
 ---
 title: "Customer Tracker Report"
 format:
-  html:
+  email:
     toc: true
     toc-title: Jump To
     fontsize: 1.5em
@@ -16,6 +16,9 @@ execute:
   echo: false
   warning: false
   cache: true
+email-attachments:
+  - Customer-Tracker-Report.xlsx
+  - Customer-Tracker-Report.png
 resource_files:
 - custom.scss
 ---
@@ -200,4 +203,63 @@ saveWorkbook(wb, xlsfile, overwrite = TRUE)
 ```
 
 
+::: {.email}
+
+```{r}
+#| inlude: false
+lab <- glue::glue_data(params, "{seg} (segment) - {grp} (group) - {per} (period)")
+reportLabFormatted <- gsub('-', ' ', reportLab)
+```
+
+
+::: {.subject}
+`r glue::glue("{reportLabFormatted} for {lab}")`
+:::
+
+Dear all, 
+
+Please find below the latest `r reportLabFormatted` for `r lab` as of `r format_datetime(run_time)`.
+
+```{r}
+#| laebel: summary_table
+#| include: false
+t1 <- t0 |> 
+  mutate(across(Revenue:Spend, scales::label_percent(accuracy = 0.01, digits = 1))) |> 
+  mutate(across(c(RevenuePre, RevenueCurr), scales::label_currency()))
+```
+
+## Highlights
+
+Highlights for this week include **`r tail(t1, 1)$Revenue` change in revenue** as a result of:
+
+* **`r tail(t1, 1)$Customers` change in customers**
+* **`r tail(t1, 1)$Visits` change in visits**
+* **`r tail(t1, 1)$Items` change in items**
+* **`r tail(t1, 1)$Spend` change in spend**
+
+## Evolution
+
+Evolution of changes by week is shown in the plot below (also attached).
+
+```{r}
+#| label: email-plot
+# reusing same ggplot as above
+p1
+```
+
+## Data
+
+The table below shows the data used to generate the plot.
+
+```{r}
+#| label: email-data
+# reusing same gt table as above
+tab
+```
+
+## See more details
+
+An `.xslx` report with detailed data can be found as attachment. 
+
+:::
 
