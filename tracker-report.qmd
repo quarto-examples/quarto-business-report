@@ -3,6 +3,10 @@ title: "Customer Tracker Report"
 format: 
   html:
     toc: true
+    toc-title: Jump To
+    fontsize: 1.5em
+    theme:
+      - lux
     other-links:
     - text: Download Report
       href: "Customer-Tracker-Report.xlsx"
