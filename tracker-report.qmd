@@ -4,11 +4,13 @@ format: html
 execute:
   echo: false
   warning: false
+  cache: true
 ---
 
 ```{r}
 #| label: setup
 #| include: false
+#| cache: false
 library(tidyverse)
 library(plotly)
 library(openxlsx)
