@@ -1,6 +1,6 @@
 ---
 title: "Customer Tracker Report"
-format: 
+format:
   html:
     toc: true
     toc-title: Jump To
@@ -16,6 +16,8 @@ execute:
   echo: false
   warning: false
   cache: true
+resource_files:
+- custom.scss
 ---
 
 ```{r}
