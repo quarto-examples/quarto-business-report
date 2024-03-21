@@ -206,7 +206,7 @@ saveWorkbook(wb, xlsfile, overwrite = TRUE)
 ::: {.email}
 
 ```{r}
-#| inlude: false
+#| include: false
 lab <- glue::glue_data(params, "{seg} (segment) - {grp} (group) - {per} (period)")
 reportLabFormatted <- gsub('-', ' ', reportLab)
 ```
@@ -221,7 +221,7 @@ Dear all,
 Please find below the latest `r reportLabFormatted` for `r lab` as of `r format_datetime(run_time)`.
 
 ```{r}
-#| laebel: summary_table
+#| label: summary_table
 #| include: false
 t1 <- t0 |> 
   mutate(across(Revenue:Spend, scales::label_percent(accuracy = 0.01, digits = 1))) |> 
