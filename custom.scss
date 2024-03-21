@@ -1,0 +1,34 @@
+/*-- scss:uses --*/
+
+@use 'sass:color';
+
+/*-- scss:defaults --*/
+
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+$font-family-sans-serif: "Lato", sans-serif;
+
+/* Company color theme */
+$color1: #000080;
+$color2: #D3D3D3;
+
+$toc-color: $color1;
+
+$link-color: color.adjust($color1, $blackness: 20%);
+
+$headings-color: $color1;
+
+$callout-color-note: color.adjust($color1, $whiteness: 20%);
+
+/*-- scss:rules --*/
+
+h1 {
+  text-shadow: -2px -2px 0 rgba(0, 0, 0, .3);
+  text-decoration: underline;
+  text-underline-offset: 0.5em;
+}
+
+h2 {
+  color: $color2;
+}
+
