@@ -18,7 +18,6 @@ library(gt)
 
 ```{r}
 #| label: params
-#| include: false
 # could also be some parameters to the report
 params <- list(
   seg = "Total",
@@ -29,7 +28,6 @@ params <- list(
 
 ```{r}
 #| label: helpers
-#| include: false
 format_datetime <- stamp("Sunday, May 1, 2000 22:10", locale = "C")
 run_time <- now()
 ```
