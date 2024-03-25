@@ -14,15 +14,17 @@ Currently this demo has only been done with Quarto document using **knitr** engi
 
 ### Steps
 
-- Starting from a standard HTML document
+- Starting from a standard HTML document ([See example file at this step](https://github.com/quarto-examples/quarto-business-report/blob/v1/tracker-report.qmd))
 
-- Adding some Quarto specific features to improve it
+- Adding some Quarto specific features to improve it (([See example file at this step](https://github.com/quarto-examples/quarto-business-report/blob/v2/tracker-report.qmd)))
 
-- Styling to match some style guide
+- Customizing styling to move from default (([See example file at this step](https://github.com/quarto-examples/quarto-business-report/blob/v3/tracker-report.qmd)))
+
+- Styling more to match a style guide (([See example file at this step](https://github.com/quarto-examples/quarto-business-report/blob/v4/tracker-report.qmd)))
 
 - Publishing and sharing results
 
-- Customizing some scheduled email updates
+- Customizing some scheduled email updates (([See example file at this step](https://github.com/quarto-examples/quarto-business-report/blob/v5/tracker-report.qmd)))
 
 ## Useful Related Resources
 
