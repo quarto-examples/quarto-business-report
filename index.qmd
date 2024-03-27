@@ -1,0 +1,187 @@
+---
+title: "How to build a business report using Quarto ?"
+subtitle: "Workflow Demo - 27/03/2024"
+author: "Christophe Dervieux"
+format:
+  positslides-revealjs: 
+    width: "1600"
+    height: "900"
+    filters:
+      - positslides
+    theme:
+      - reveal-style.scss
+    menu: false
+    slide-number: false
+---
+
+## {.full-brackets-dark}
+
+::: {.incremental style="font-size: 2em; padding-top: 3em;"}
+1. Generic introduction to Quarto
+
+2. Building a business report with Quarto
+:::
+
+## What is Quarto ? {.full-brackets-light}
+
+Quarto is a new, open-source, scientific, and technical publishing system
+
+-   Computations: Python, R, Julia, Observable JS
+-   Markdown: [Pandoc](https://pandoc.org) with many enhancements
+-   Output: Documents, presentations, websites, books, blogs
+
+![[Artwork from "Hello, Quarto" keynote by Julia Lowndes and Mine Çetinkaya-Rundel, presented at RStudio Conference 2022. Illustrated by Allison Horst.]{.small-cap}](images/horst_quarto_schematic.png){fig-alt="A schematic representing the multi-language input (e.g. Python, R, Observable, Julia) and multi-format output (e.g. PDF, html, Word documents, and more) versatility of Quarto." fig-align="center" width="60%"}
+
+## Why a New System? {visibility="hidden"}
+
+-   The [number of languages and runtimes used for scientific discourse is very broad]{.hl} (and the Jupyter ecosystem in particular is extraordinarily popular).
+
+-   Quarto is at its core [multi-language and multi-engine]{.hl} (supporting Knitr, Jupyter, and Observable today and potentially other engines tomorrow).
+
+-   On the other hand, [R Markdown is heavily tied to R]{.hl} which limits the number of people it can benefit.
+
+-   Quarto is Posit's attempt to bring 10-years experience of [R Markdown to everyone]{.hl}!
+
+</br> 
+
+![](quarto-logo-trademark.svg){fig-alt="quarto logo" fig-align="center" width="50%"}
+
+## How it works ? {.full-brackets-light}
+
+::: {style="margin-top: 2em;"}
+
+::: columns
+::: {.column width="30%"}
+- Leverages multiple computation engines
+- Uses `.md`, `.qmd` or `.ipynb` as source files
+- Extends Pandoc universal converter
+- Produces several output formats
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="65%"}
+![](images/rstudio-qmd-how-it-works.png){width="70%"}
+
+![](images/qmd-how-it-works.png){width="70%"}
+
+![](images/ipynb-how-it-works.png){width="70%"}
+:::
+:::
+
+:::
+
+## How to start? {.full-brackets-light}
+
+Look at Quarto Documentation website:
+
+-   Getting started: <https://quarto.org/docs/get-started/>
+
+-   User guide: <https://quarto.org/docs/guide/>
+
+::: columns
+::: {.column width="50%"}
+![](images/doc-website.png){fig-alt="screenshot of quarto website at quarto.org" fig-align="center" width="80%"}
+:::
+
+::: {.column width="50%"}
+![](images/quarto-get-started.png){fig-alt="screenshot of quarto website get started section at quarto.org" fig-align="center" width="80%"}
+:::
+:::
+
+## How to use? {.full-brackets-light}
+
+### Quarto CLI
+
+Core component that drives Quarto rendering. This is the only thing you need to render plain markdown (it includes Pandoc).
+
+-   Add `knitr` to render documents with R
+-   Add `jupyter` to render with Jupyter kernels
+
+This is a system level component that can be used with any tooling.
+
+## How to use? {.full-brackets-light}
+
+### RStudio IDE
+
+RStudio IDE bundles Quarto and integrates with it.
+
+::: columns
+::: {.column width="50%"}
+![](images/new-quarto-doc.png){.illustration width="80%"}
+:::
+
+::: {.column width="50%"}
+![](images/rstudio-new-knitr-project.png){.illustration}
+:::
+:::
+
+## How to use? {.full-brackets-light}
+
+### VS Code Extension {.smaller}
+
+<https://quarto.org/docs/tools/vscode.html>
+
+::: columns
+::: {.column width="50%"}
+![](images/screenshot-vscode-preview.png){.illustration}
+:::
+
+::: {.column width="50%"}
+![](images/screenshot-vscode-r.png){.illustration}
+:::
+:::
+
+## How to use? {.full-brackets-light}
+
+### Jupyter Lab
+
+::: columns
+::: {.column width="30%"}
+* As an extension
+:::
+
+:::
+
+![](images/jupyterlab-preview.png){.illustration .absolute width="75%" right="5" top="50"}
+
+## How to use? {.full-brackets-light}
+
+### Visual Editor
+
+WYSIWYM editor  
+for Quarto
+
+::: columns
+::: {.column width="30%"}
+- VS CODE 
+
+- RStudio IDE
+:::
+
+:::
+
+![](images/screenshot-visual-editor.png){.illustration .absolute width="72%" right="10" top="25"}
+
+## Demo {.full-brackets-dark}
+
+Let's dive now into a demo of Quarto ! 
+
+### Our Use Case
+
+🎯 Build a business report for stakeholders in enterprise context.
+
+### Steps
+
+::: {.incremental}
+- Starting from a standard HTML document
+
+- Adding some Quarto specific features to improve it
+
+- Styling to match some style guide
+
+- Publishing and sharing results
+
+- Customizing some scheduled email updates
+:::

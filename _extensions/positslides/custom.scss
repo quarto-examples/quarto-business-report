@@ -1,0 +1,85 @@
+/*-- scss:defaults --*/
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+$font-family-sans-serif: 'Open Sans', sans-serif !default;
+$font-family-monospace: 'Source Code Pro', monospace !default;
+$presentation-heading-font: "Open Sans", sans-serif !default;
+$presentation-title-slide-text-align: left;
+$presentation-heading-font-weight: 300;
+$code-block-font-size: 0.90em;
+
+// colors
+$body-bg: #FFF !default;
+$body-color: #404041 !default;
+$link-color: #447099 !default;
+$code-color: #72994E !default;
+$selection-bg: #EE6331;
+
+// dark colors
+$dark-bg-text-color:	#fff !default;
+$dark-bg-link-color:	#A2B8CB !default;
+$dark-bg-code-color:	#72994E !default;
+
+/*-- scss:rules --*/
+
+#title-slide {
+  & > h1 {
+    text-align: left;
+    font-weight: 300;
+    color: #404041;
+  }
+
+  & > p {
+    color: #818184;
+    font-size: 65px;
+    text-align: left;
+    font-weight: 300;
+  }
+
+  .subtitle {
+    font-size: 60px;
+    font-weight: 600;
+  }
+
+  .quarto-title-author-name {
+    font-size: 50px;
+    font-weight: 300;
+  }
+
+  .institute {
+    font-weight: 1000;
+  }
+}
+
+// dark slides
+section div.has-dark-background {
+
+  color: $dark-bg-text-color;
+
+  h2, h3 {
+    font-weight: 300;
+    color: $dark-bg-text-color;
+  }
+
+  code {
+     color: $dark-bg-code-color;
+  }
+
+  a {
+    color: $dark-bg-link-color;
+  }
+
+  blockquote {
+    color: #c9c9c9;
+  }
+}
+
+// don't add margin to last column
+
+.reveal .columns>.column:last-child>:not(ul,ol) {
+  margin-left: 0;
+}
+
+

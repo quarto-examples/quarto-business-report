@@ -1,0 +1,15 @@
+title: Positslides
+author: Thomas Mock, Carlos Scheidegger, Katie Masiello, Mine Cetinkaya-Rundel
+version: 1.0.0
+quarto-required: ">=1.2.0"
+contributes:
+  formats:
+    revealjs:
+      theme: [default, custom.scss]
+      title-slide-attributes:
+        data-background-color: black
+        data-background-image: _extensions/positslides/assets/backgrounds/title-slide-option-1.png
+        data-background-size: contain
+  filters:
+    - positslides.lua
+

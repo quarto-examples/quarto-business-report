@@ -1,0 +1,108 @@
+/*-- scss:defaults --*/
+
+// fonts
+// @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap');
+// @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap');
+//
+// $font-family-sans-serif: "Atkinson Hyperlegible", sans-serif;
+// $font-family-monospace: "Source Code Pro", monospace;
+// $presentation-heading-color: #2568B0;
+// $link-color: #c78d22;
+$perso-highlight-color: #39729E;
+// $hover-color: lighten($link-color, 10%);
+$code-block-font-size: 0.7em;
+$presentation-h2-font-size: 1.4em !default;
+// $presentation-font-size-root: 36px !default;
+
+/*-- scss:rules --*/
+
+%bold-font {
+  font-weight: bold;
+}
+
+.reveal {
+  .caption {
+    .small-cap {
+      font-size: 0.5em;
+    }
+  }
+
+  h2 {
+    @extend %bold-font;
+  }
+
+  section div.has-dark-background h2 {
+    @extend %bold-font;
+  }
+
+  h2 + p, h2 + h3, h3, h3 + p {
+    margin-top: 1em;
+  }
+
+  img + p {
+    margin-top: 0.5em;
+  }
+  /*
+  .columns {
+    p {
+      margin-top: 0.5em ;
+    }
+    .column {
+      ul {
+        display: initial;
+      }
+    }
+  } */
+}
+
+.illustration {
+  border: 1px solid #dee2e6;
+}
+
+.bottom-pad {
+  padding-bottom: 10px;
+}
+
+.top-pad {
+  padding-top: 10px;
+}
+
+.hl {
+  color: $perso-highlight-color;
+}
+
+.make-smaller {
+  font-size: 0.7em;
+}
+
+section#diagrams {
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+// Tweaks for callout in .smaller slides
+
+.reveal {
+  section.slide.smaller {
+    div.callout-title {
+      div.callout-icon-container {
+        & + p {
+          display: table;
+          text-align: center;
+          strong {
+            display: table-cell;
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+  }
+  .callout.callout-titled .callout-icon::before {
+      margin-top: 0.5rem;
+  }
+}
+
+
