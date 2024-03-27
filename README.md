@@ -26,6 +26,12 @@ Currently this demo has only been done with Quarto document using **knitr** engi
 
 - Customizing some scheduled email updates (([See example file at this step](https://github.com/quarto-examples/quarto-business-report/blob/v5/tracker-report.qmd)))
 
+## Watch the Demo 
+
+- Recorded demo on [Posit Workflow Demo Youtube Channel](https://youtu.be/Hl9TvhlzfV4)
+- Published Document on [Posit Connect](https://colorado.posit.co/rsc/quarto/business-report-demo/)
+- Intro slides at <https://quarto-examples.github.io/quarto-business-report/>
+
 ## Useful Related Resources
 
 - [Quarto Theming](https://quarto.org/docs/output-formats/html-themes.html)
