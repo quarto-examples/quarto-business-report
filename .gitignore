@@ -17,3 +17,6 @@
 email-preview/
 *.png
 rsconnect/
+
+/.luarc.json
+.vscode/
