@@ -185,3 +185,17 @@ Let's dive now into a demo of Quarto !
 
 - Customizing some scheduled email updates
 :::
+
+## Watch Demo 
+
+{{< video https://youtu.be/Hl9TvhlzfV4 width="100%" height="85%" >}}
+
+## {background-iframe="https://colorado.posit.co/rsc/quarto/business-report-demo/" data-preload=""}
+
+::: columns
+::: {.column width="30%"}
+Live report demo published on  
+[Posit Connect](https://colorado.posit.co/rsc/quarto/business-report-demo/)
+:::
+
+:::
